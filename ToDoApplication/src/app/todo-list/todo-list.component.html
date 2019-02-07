@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container" style="margin-top:20px;">
+  <div>
+    <div class="form-row">
+      <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="itemName" placeholder="Add a to-do Item" style="margin-right:20px;">
+      </div>
+      <div class="col-2">
+        <button class="btn btn-success" (click)="onClickAddItem()">Add Item</button>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group col-10" style="margin-top:20px;">
+    <li class="list-group-item" *ngFor="let item of itemsList;let i= index" [ngClass]="{'disabled':item.checked}">
+      <i *ngIf="!item.checked" class="fa fa-square-o fa-1x" (click)="onChangeInChecked(i,item)" aria-hidden="true"></i>
+      <i *ngIf="item.checked" style="color: green;" class="fa fa-check-square-o fa-1x" (click)="onChangeInChecked(i,item)"
+        aria-hidden="true"></i>
+      {{item.itemName}}
+      <i class="fa fa-trash fa-1x" style="float:right;color: red" (click)="onDeleteItem(i)"></i>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="doneItemList.length>0" class="container">
+  <h4 style="margin-top:10px;">Done List</h4>
+  <ul class="list-group col-10" style="margin-top:20px;">
+    <li class="list-group-item" *ngFor="let item of doneItemList;let i= index">
+      {{item.itemName}}
+    </li>
+  </ul>
+
+</div>
